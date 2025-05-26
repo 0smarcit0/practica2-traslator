@@ -1,0 +1,16 @@
+Para ejecutar la practica 2 en su computador siga los pasos acontinuacion
+
+1. en la carpeta practica2 corra el siguiente comando: 
+
+        npm install
+
+2. luego que todas las dependencias hayan sido instaladas, ejecute el siguiente comando:
+       
+       npm run dev
+
+3. el script anterior ejecutara la aplicacion, y en la terminal le indicara en que puerto
+se ha iniciado la aplicacion.
+
+
+
+Osmar Porras.

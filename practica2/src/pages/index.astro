@@ -1,8 +1,23 @@
 ---
-import fs from 'fs';
 
-let data1 = fs.readFileSync("public/glifos.txt","utf-8");
-let data2 = fs.readFileSync("public/salidaglifos.txt","utf-8");
+//Frontmatter: codigo que se va a ejecutar en el servidor.
+import fs from 'fs';
+let data1;
+let data2;
+let data3 = " 1 = Sigma = Σ \n\n 5 = Lambda = Λ \n\n 9 = Sigma/Omega = ΣΩ \n\n 10 = Omega = Ω \n\n 40 = Omega/Delta = ΩΔ \n\n 50 = Delta = Δ \n\n 90= Omega/Phi = ΩΦ \n\n 100 = Phi = Φ \n\n 500 = Psi = Ψ \n\n 1000 = Xi = Ξ";
+
+try {
+  data1 = fs.readFileSync("public/glifos.txt","utf-8");
+} catch (error) {
+  console.log("error, archivo no encontrado");
+  data1="";
+}
+try {
+  data2=fs.readFileSync("public/salidaglifos.txt","utf-8");
+} catch (error) {
+  console.log("error, archivo 2 no encontrado");
+  data2="";
+}
 
 ---
 <!-- Below is your "component template." It's just HTML, but with
@@ -21,27 +36,35 @@ let data2 = fs.readFileSync("public/salidaglifos.txt","utf-8");
       </header>
       <section class = "principal">
         <div class="contenedor">
+          <form>
+            <div class="contenedor">
+             <div class="entry">
+              <label for="input">Numero entero</label>
+              <textarea name="input" id="1" class="input" >{data1}  </textarea>
+             </div>
           
-          <div class="entry">
-            <legend>Numero entero</legend>
-            <textarea name="input" id="1" class="input" >{data1}  </textarea>
-          </div>
-          
-          <div class="entry">
-            <legend>Glifo/palabra</legend>
-            <textarea name="output"  id="2" class="output" disabled >{data2} </textarea>
-          </div>
+             <div class="entry">
+              <label for="output">Glifo/palabra</label>
+              <textarea name="output"  id="2" class="output" readonly>{data2} </textarea>
+             </div>
+            </div>
+           
+           <div>
+            <button type="submit" class="btn" id="ag">Guardar</button>
+           </div>
+           
+          </form>
         </div>
           <div>
             <div class="entry">
-            <legend>Glifo</legend>
-            <textarea name="outputG"  id="3" class="outputG" disabled >{data2} </textarea>
+            <label>Glifo</label>
+            <textarea name="outputG"  id="3" class="outputG" readonly >{data2} </textarea>
           </div>
+        </div> 
+        <div>
+          <label>Tabla de conversion</label>
+          <textarea name="conv" id="4" readonly>{data3}</textarea>
         </div>
-          
-        
-        
-        
       </section>
     
     </main>
@@ -50,7 +73,9 @@ let data2 = fs.readFileSync("public/salidaglifos.txt","utf-8");
   <script src="/src/scripts/app.js"></script>
 
 </html>
+
 <style>
+  
   h1 {
     color: orange;
     font-family: Arial, Helvetica, sans-serif;
@@ -76,6 +101,7 @@ let data2 = fs.readFileSync("public/salidaglifos.txt","utf-8");
 
   }
   textarea{
+    transition: 500ms;
     resize: none;
     height: 10rem;
     width: 20rem;
@@ -86,6 +112,16 @@ let data2 = fs.readFileSync("public/salidaglifos.txt","utf-8");
     margin: 0%;
     font-family: Arial, Helvetica, sans-serif;
     padding: 1rem;
+  }
+  textarea:focus{
+    transition: 500ms;
+    box-shadow: 0rem 0rem 1rem #fb8600d8;
+    text-shadow: 0rem 0rem 0.1rem white;
+  }
+  textarea:hover{
+    transition: 500ms;
+    box-shadow: 0rem 0rem 1rem #fb8600d8;
+    text-shadow: 0rem 0rem 0.1rem white;
   }
 
 
@@ -104,7 +140,7 @@ let data2 = fs.readFileSync("public/salidaglifos.txt","utf-8");
     margin-bottom: 1rem;
     
   }
-  legend{
+  label{
     color: orange;
     margin-bottom: 0.3rem;
     font-family: Arial, Helvetica, sans-serif;
@@ -130,4 +166,28 @@ let data2 = fs.readFileSync("public/salidaglifos.txt","utf-8");
     justify-content: center;
     padding: 1rem;
   }
+  button{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: antiquewhite;
+    cursor: pointer;
+    margin-top:1rem;
+    width: 6rem;
+    height: 1.7rem;
+    background-color: orange;
+  }
+  button:hover{
+    transition: 500ms;
+    box-shadow: 0rem 0rem 0.5rem #fb8600d8;
+    text-shadow: 0rem 0rem 0.1rem white;
+  }
+  #ag{
+    transition: 300ms;
+    margin-left: 0;
+    background-color: #fb8500;
+    border: 0;
+    border-radius: 1rem;
+}
 </style>

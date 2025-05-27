@@ -1,3 +1,5 @@
+import { POST } from "../pages/api/save.json";
+//tablas necesarias para la conversion
 let glifos = ["Ξ","ΦΞ","Ψ","ΦΨ","Φ","ΩΦ","Δ","ΔΦ","ΩΔ","Ω","ΣΩ","Λ","ΛΩ","ΣΛ","Σ"];
 let tabla =new  Map();
 tabla.set("xi",1000);
@@ -15,11 +17,30 @@ tabla.set("lambda",5);
 tabla.set("lambda/omega",5);
 tabla.set("sigma/lambda",4)
 tabla.set("sigma",1);
+//manipulacion del DOM
 let output = document.querySelector(".output");
 let outputG = document.querySelector(".outputG");
 let input = document.querySelector(".input");
+let form = document.querySelector("form")
 
+//evento para  guardar la data accediendo al endpoint
+form.addEventListener("submit",(e)=>{
+    e.preventDefault();
+    console.log("hola");
+    let data = new FormData(form);
+    let d = Object.fromEntries(data);
 
+    let res =  fetch("/api/save.json",{
+        method: "POST",
+        body: JSON.stringify(d)
+    }).then((res)=>{
+        console.log("subido")
+    }).catch((err)=>{
+        console.log("error");
+    })
+    console.log(d);
+})
+//funcion para la traduccion en tiempo real
 input.addEventListener("keyup",()=>{
       async function poner() {
         output.value = await procesar(input.value); 
@@ -28,6 +49,7 @@ input.addEventListener("keyup",()=>{
            
 });
 
+//funcion para tomar el valor del input y convertirlo
 async function procesar(data){
     let n;
     let r;
@@ -38,6 +60,7 @@ async function procesar(data){
     
     for (let index = 0; index < p_data.length; index++) {
         n = Number(p_data[index]);
+        //cuando se tiene el input, este se traduce llamando a traslate
         r = await traslate(n);
         separation = r.split("=");
         console.log(r)
@@ -65,7 +88,8 @@ function traslate(num){
             if (n>3999) {
                 r = "ERROR: entrada invalida, debe ser un numero menor a 4000"
             }else{
-                key.forEach(element =>{
+                if (n>0) {
+                    key.forEach(element =>{
                 
                     n = Math.floor(num/tabla.get(element))
                     if(n>0){
@@ -79,10 +103,10 @@ function traslate(num){
                     }
                     j++;
                 });
+                }
             }
            j=0;
         }
-        console.log(r2)
         resolve(r+"="+r2);
     });
 }

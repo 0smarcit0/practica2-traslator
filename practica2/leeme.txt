@@ -1,6 +1,6 @@
 Para ejecutar la practica 2 en su computador siga los pasos acontinuacion
 
-1. en la carpeta practica2 corra el siguiente comando: 
+1. en la carpeta practica2, que es la raiz, corra el siguiente comando: 
 
         npm install
 

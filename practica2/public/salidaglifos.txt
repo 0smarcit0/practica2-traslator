@@ -1,9 +1,7 @@
-1  $/sigma
-123  $/phi/omega/omega/sigma/sigma/sigma
-ERROR: entrada invalida, no es un numero.
 ERROR: entrada invalida, debe ser un numero menor a 4000
-4.5  $/sigma/lambda
-1  $/sigma
-89  $/delta/omega/omega/omega/sigma/omega
-1299  $/xi/phi/phi/omega/phi/sigma/omega
+123  $/phi/omega/omega/sigma/sigma/sigma
+23  $/omega/omega/sigma/sigma/sigma
+ERROR: entrada invalida, no es un numero.
+ERROR: entrada invalida, no es un numero.
+ERROR: entrada invalida, no es un numero.
 0  $

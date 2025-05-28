@@ -82,11 +82,12 @@ function traslate(num){
     let key = tabla.keys();
     return new Promise((resolve, reject) =>{
         if (Number.isNaN(n)) {
-            
-            r = "ERROR: entrada invalida, no es un numero."
+            r = "ERROR: entrada invalida, no es un numero.";
+            r2 = "ERROR: entrada invalida, no es un numero.";
         }else{
             if (n>3999) {
-                r = "ERROR: entrada invalida, debe ser un numero menor a 4000"
+                r = "ERROR: entrada invalida, debe ser un numero menor a 4000";
+                r2 = "ERROR: entrada invalida, debe ser un numero menor a 4000"
             }else{
                 if (n>0) {
                     key.forEach(element =>{

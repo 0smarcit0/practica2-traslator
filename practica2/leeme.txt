@@ -9,8 +9,8 @@ Para ejecutar la practica 2 en su computador siga los pasos acontinuacion
        npm run dev
 
 3. el script anterior ejecutara la aplicacion, y en la terminal le indicara en que puerto
-se ha iniciado la aplicacion.
+donde se ha iniciado la aplicacion.
 
-
+linl del repositorio de github: https://github.com/0smarcit0/practica2-traslator
 
 Osmar Porras.

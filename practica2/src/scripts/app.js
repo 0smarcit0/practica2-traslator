@@ -73,14 +73,19 @@ async function procesar(data){
     return final;
 }
 
+//funcion de conversion
+
 function traslate(num){
+    //variables auxiliares
     let i =0;
     let j =0;
     let n = num;
     let r = ""+n+"  $"
     let r2="";
     let key = tabla.keys();
+    //usamos asincronia para que funcione correctamente
     return new Promise((resolve, reject) =>{
+        //validaciones
         if (Number.isNaN(n)) {
             r = "ERROR: entrada invalida, no es un numero.";
             r2 = "ERROR: entrada invalida, no es un numero.";
@@ -89,16 +94,19 @@ function traslate(num){
                 r = "ERROR: entrada invalida, debe ser un numero menor a 4000";
                 r2 = "ERROR: entrada invalida, debe ser un numero menor a 4000"
             }else{
+                
                 if (n>0) {
                     key.forEach(element =>{
                 
                     n = Math.floor(num/tabla.get(element))
                     if(n>0){
+                        //se divide el numero y se pone el signo tantas veces diga el resultado de la division
                         while(i<n) {
                             r = r+"/"+element;
                             r2 = r2+glifos[j];
                             i++;
                         }
+                        //se usa el % para quitar esa parte del numero que ya se hizo
                         num = num%tabla.get(element);       
                         i=0;
                     }
@@ -108,6 +116,7 @@ function traslate(num){
             }
            j=0;
         }
+        //se resuelve la promise enviando una cadena con el valor en palabra=glifo
         resolve(r+"="+r2);
     });
 }
